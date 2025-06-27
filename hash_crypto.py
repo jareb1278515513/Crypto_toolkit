@@ -450,16 +450,13 @@ def main():
         print("1. 计算文本哈希")
         print("2. 计算文件哈希")
         print("3. 验证哈希")
-        print("4. 数字密码暴力破解")
-        print("5. 字母密码暴力破解")
-        print("6. 字母数字密码暴力破解")
-        print("7. 自定义字符集暴力破解")
-        print("8. 字典攻击")
-        print("9. 彩虹表攻击")
-        print("10. 哈希碰撞演示")
-        print("11. 退出")
+        print("4. 自定义字符集暴力破解")
+        print("5. 字典攻击")
+        print("6. 彩虹表攻击")
+        print("7. 哈希碰撞演示")
+        print("8. 退出")
         
-        choice = input("\n请选择 (1-11): ").strip()
+        choice = input("\n请选择 (1-8): ").strip()
         
         if choice == '1':
             try:
@@ -566,33 +563,6 @@ def main():
         elif choice == '4':
             target_hash = input("请输入目标哈希: ").strip()
             algorithm = input("请选择算法 (md5/sha1/sha256): ").strip().lower()
-            max_len = int(input("请输入最大密码长度(默认8): ") or "8")
-            if algorithm not in hasher.algorithms:
-                print("不支持的算法")
-                continue
-            brute_force_hash_numeric(target_hash, algorithm, max_len)
-            
-        elif choice == '5':
-            target_hash = input("请输入目标哈希: ").strip()
-            algorithm = input("请选择算法 (md5/sha1/sha256): ").strip().lower()
-            max_len = int(input("请输入最大密码长度(默认6): ") or "6")
-            if algorithm not in hasher.algorithms:
-                print("不支持的算法")
-                continue
-            brute_force_hash_alpha(target_hash, algorithm, max_len)
-            
-        elif choice == '6':
-            target_hash = input("请输入目标哈希: ").strip()
-            algorithm = input("请选择算法 (md5/sha1/sha256): ").strip().lower()
-            max_len = int(input("请输入最大密码长度(默认5): ") or "5")
-            if algorithm not in hasher.algorithms:
-                print("不支持的算法")
-                continue
-            brute_force_hash_alphanumeric(target_hash, algorithm, max_len)
-            
-        elif choice == '7':
-            target_hash = input("请输入目标哈希: ").strip()
-            algorithm = input("请选择算法 (md5/sha1/sha256): ").strip().lower()
             if algorithm not in hasher.algorithms:
                 print("不支持的算法")
                 continue
@@ -606,7 +576,7 @@ def main():
             min_len, max_len = get_length_range()
             brute_force_hash_custom_charset(target_hash, charset_choice, algorithm, min_len, max_len, custom_start, custom_end)
             
-        elif choice == '8':
+        elif choice == '5':
             target_hash = input("请输入目标哈希: ").strip()
             algorithm = input("请选择算法 (md5/sha1/sha256): ").strip().lower()
             wordlist = input("请输入字典文件路径: ").strip()
@@ -615,7 +585,7 @@ def main():
                 continue
             dictionary_attack_hash(target_hash, wordlist, algorithm)
             
-        elif choice == '9':
+        elif choice == '6':
             target_hash = input("请输入目标哈希: ").strip()
             algorithm = input("请选择算法 (md5/sha1/sha256): ").strip().lower()
             max_len = int(input("请输入最大密码长度(默认6): ") or "6")
@@ -624,10 +594,10 @@ def main():
                 continue
             rainbow_table_attack(target_hash, algorithm, None, max_len)
             
-        elif choice == '10':
+        elif choice == '7':
             hash_collision_demo()
             
-        elif choice == '11':
+        elif choice == '8':
             print("退出程序")
             break
             

@@ -535,13 +535,10 @@ def main():
         print("7. ECB模式解密（无填充）")
         print("8. CBC模式加密（无填充）")
         print("9. CBC模式解密（无填充）")
-        print("10. 数字密钥暴力破解")
-        print("11. 字母密钥暴力破解")
-        print("12. 字母数字混合密钥暴力破解")
-        print("13. 自定义字符集暴力破解")
-        print("14. 退出")
+        print("10. 自定义字符集暴力破解")
+        print("11. 退出")
         
-        choice = input("\n请选择 (1-14): ").strip()
+        choice = input("\n请选择 (1-11): ").strip()
         
         if choice == '1':
             key = des.generate_key()
@@ -786,39 +783,6 @@ def main():
                 
         elif choice == '10':
             ciphertext_hex = input("请输入密文(16进制): ").strip()
-            target = input("请输入目标明文(可选): ").strip()
-            max_len = int(input("请输入最大密钥长度(默认6): ") or "6")
-            try:
-                ciphertext = binascii.unhexlify(ciphertext_hex)
-                target = target if target else None
-                brute_force_des_numeric(ciphertext, target, max_len)
-            except Exception as e:
-                print(f"错误: {e}")
-                
-        elif choice == '11':
-            ciphertext_hex = input("请输入密文(16进制): ").strip()
-            target = input("请输入目标明文(可选): ").strip()
-            max_len = int(input("请输入最大密钥长度(默认4): ") or "4")
-            try:
-                ciphertext = binascii.unhexlify(ciphertext_hex)
-                target = target if target else None
-                brute_force_des_alpha(ciphertext, target, max_len)
-            except Exception as e:
-                print(f"错误: {e}")
-                
-        elif choice == '12':
-            ciphertext_hex = input("请输入密文(16进制): ").strip()
-            target = input("请输入目标明文(可选): ").strip()
-            max_len = int(input("请输入最大密钥长度(默认4): ") or "4")
-            try:
-                ciphertext = binascii.unhexlify(ciphertext_hex)
-                target = target if target else None
-                brute_force_des_alphanumeric(ciphertext, target, max_len)
-            except Exception as e:
-                print(f"错误: {e}")
-                
-        elif choice == '13':
-            ciphertext_hex = input("请输入密文(16进制): ").strip()
             charset_result = show_charset_menu()
             if len(charset_result) == 3:
                 charset_choice, custom_start, custom_end = charset_result
@@ -835,7 +799,7 @@ def main():
             except Exception as e:
                 print(f"错误: {e}")
                 
-        elif choice == '14':
+        elif choice == '11':
             print("退出程序")
             break
             

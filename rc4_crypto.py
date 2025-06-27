@@ -382,15 +382,12 @@ def main():
         print("\n选择操作:")
         print("1. 加密")
         print("2. 解密")
-        print("3. 数字密钥暴力破解")
-        print("4. 字母密钥暴力破解")
-        print("5. 字母数字密钥暴力破解")
-        print("6. 自定义字符集暴力破解")
-        print("7. 字典攻击")
-        print("8. 密钥流分析")
-        print("9. 退出")
+        print("3. 自定义字符集暴力破解")
+        print("4. 字典攻击")
+        print("5. 密钥流分析")
+        print("6. 退出")
         
-        choice = input("\n请选择 (1-9): ").strip()
+        choice = input("\n请选择 (1-6): ").strip()
         
         if choice == '1':
             try:
@@ -454,39 +451,6 @@ def main():
                 
         elif choice == '3':
             ciphertext_hex = input("请输入密文(16进制): ").strip()
-            target = input("请输入目标明文(可选): ").strip()
-            max_len = int(input("请输入最大密钥长度(默认6): ") or "6")
-            try:
-                ciphertext = binascii.unhexlify(ciphertext_hex)
-                target = target if target else None
-                brute_force_rc4_numeric(ciphertext, target, max_len)
-            except Exception as e:
-                print(f"错误: {e}")
-                
-        elif choice == '4':
-            ciphertext_hex = input("请输入密文(16进制): ").strip()
-            target = input("请输入目标明文(可选): ").strip()
-            max_len = int(input("请输入最大密钥长度(默认5): ") or "5")
-            try:
-                ciphertext = binascii.unhexlify(ciphertext_hex)
-                target = target if target else None
-                brute_force_rc4_alpha(ciphertext, target, max_len)
-            except Exception as e:
-                print(f"错误: {e}")
-                
-        elif choice == '5':
-            ciphertext_hex = input("请输入密文(16进制): ").strip()
-            target = input("请输入目标明文(可选): ").strip()
-            max_len = int(input("请输入最大密钥长度(默认4): ") or "4")
-            try:
-                ciphertext = binascii.unhexlify(ciphertext_hex)
-                target = target if target else None
-                brute_force_rc4_alphanumeric(ciphertext, target, max_len)
-            except Exception as e:
-                print(f"错误: {e}")
-                
-        elif choice == '6':
-            ciphertext_hex = input("请输入密文(16进制): ").strip()
             charset_result = show_charset_menu()
             if len(charset_result) == 3:
                 charset_choice, custom_start, custom_end = charset_result
@@ -503,7 +467,7 @@ def main():
             except Exception as e:
                 print(f"错误: {e}")
                 
-        elif choice == '7':
+        elif choice == '4':
             ciphertext_hex = input("请输入密文(16进制): ").strip()
             wordlist = input("请输入字典文件路径: ").strip()
             try:
@@ -512,7 +476,7 @@ def main():
             except Exception as e:
                 print(f"错误: {e}")
                 
-        elif choice == '8':
+        elif choice == '5':
             ciphertext1_hex = input("请输入已知密文1(16进制): ").strip()
             plaintext1 = input("请输入对应明文1: ").strip()
             ciphertext2_hex = input("请输入待解密密文2(16进制): ").strip()
@@ -523,7 +487,7 @@ def main():
             except Exception as e:
                 print(f"错误: {e}")
                 
-        elif choice == '9':
+        elif choice == '6':
             print("退出程序")
             break
             

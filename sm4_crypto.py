@@ -408,13 +408,10 @@ def main():
         print("3. ECB模式解密")
         print("4. 单块加密")
         print("5. 单块解密")
-        print("6. 数字密钥暴力破解")
-        print("7. 字母密钥暴力破解")
-        print("8. 字母数字混合密钥暴力破解")
-        print("9. 自定义字符集暴力破解")
-        print("10. 退出")
+        print("6. 自定义字符集暴力破解")
+        print("7. 退出")
         
-        choice = input("\n请选择 (1-10): ").strip()
+        choice = input("\n请选择 (1-7): ").strip()
         
         if choice == '1':
             import os
@@ -512,39 +509,6 @@ def main():
                 
         elif choice == '6':
             ciphertext_hex = input("请输入密文(16进制): ").strip()
-            target = input("请输入目标明文(可选): ").strip()
-            max_len = int(input("请输入最大密钥长度(默认6): ") or "6")
-            try:
-                ciphertext = binascii.unhexlify(ciphertext_hex)
-                target = target if target else None
-                brute_force_sm4_numeric(ciphertext, target, max_len)
-            except Exception as e:
-                print(f"错误: {e}")
-                
-        elif choice == '7':
-            ciphertext_hex = input("请输入密文(16进制): ").strip()
-            target = input("请输入目标明文(可选): ").strip()
-            max_len = int(input("请输入最大密钥长度(默认4): ") or "4")
-            try:
-                ciphertext = binascii.unhexlify(ciphertext_hex)
-                target = target if target else None
-                brute_force_sm4_alpha(ciphertext, target, max_len)
-            except Exception as e:
-                print(f"错误: {e}")
-                
-        elif choice == '8':
-            ciphertext_hex = input("请输入密文(16进制): ").strip()
-            target = input("请输入目标明文(可选): ").strip()
-            max_len = int(input("请输入最大密钥长度(默认3): ") or "3")
-            try:
-                ciphertext = binascii.unhexlify(ciphertext_hex)
-                target = target if target else None
-                brute_force_sm4_alphanumeric(ciphertext, target, max_len)
-            except Exception as e:
-                print(f"错误: {e}")
-                
-        elif choice == '9':
-            ciphertext_hex = input("请输入密文(16进制): ").strip()
             charset_result = show_charset_menu()
             if len(charset_result) == 3:
                 charset_choice, custom_start, custom_end = charset_result
@@ -561,7 +525,7 @@ def main():
             except Exception as e:
                 print(f"错误: {e}")
                 
-        elif choice == '10':
+        elif choice == '7':
             print("退出程序")
             break
             
